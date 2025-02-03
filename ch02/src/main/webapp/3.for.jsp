@@ -49,13 +49,13 @@
 			<th>9단</th>
 		</tr>
 		
-		<% for(int a=2; a<=9; a++){ %>
+		<% for(int a=1; a<=9; a++){ %>
 		<tr>
-			<% for(int b=1; b<=9; b++) %>
+			<% for(int b=2; b<=9; b++){ %>
 			<td><%= b %> x <%= a %> = <%= a*b %></td>
 			<% } %>
 		</tr>
-		
+		<% } %>
 	</table>
 	
 </body>
