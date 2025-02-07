@@ -1,3 +1,6 @@
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.Context"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.net.ConnectException"%>
@@ -9,18 +12,28 @@
 	String name = request.getParameter("name");
 	String hp 	= request.getParameter("hp");
 	String age 	= request.getParameter("age");
-	
+
+	/*
 	//데이터베이스 처리
 	String host = "jdbc:mysql://127.0.0.1:3306/studydb";
 	String user = "root";
 	String pass = "abc1234";
+	*/
 	
 	try{
 		//1단계 - JDBC 드라이버 로드
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		//Class.forName("com.mysql.cj.jdbc.Driver");
 		
 		//2단계 - 데이터베이스 접속
-		Connection conn = DriverManager.getConnection(host, user, pass);
+		//Connection conn = DriverManager.getConnection(host, user, pass);
+		
+		//JNDI 서비스 객체 생성
+		Context initCtx = new InitialContext();
+		Context ctx = (Context)initCtx.lookup("java:comp/env"); //JNDI 기본환경 이름
+		
+		//커넥션 풀에 있는 커넥션을 가져오기
+		DataSource ds = (DataSource) ctx.lookup("jdbc/studydb");
+		Connection conn = ds.getConnection();
 		
 		//3단계 - SQL 실행 객체 생성
 		String sql = "INSERT INTO `user1` VALUES(?,?,?,?)";

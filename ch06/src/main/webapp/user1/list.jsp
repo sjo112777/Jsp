@@ -1,3 +1,6 @@
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.Context"%>
+<%@page import="javax.naming.InitialContext"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="entity.User1"%>
 <%@page import="java.util.ArrayList"%>
@@ -7,18 +10,28 @@
 <%@page import="java.sql.Statement"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+/*
 	//데이터베이스 처리
 	String host = "jdbc:mysql://127.0.0.1:3306/studydb";
 	String user = "root";
 	String pass = "abc1234";
-	
+	*/
 	List<User1> users = new ArrayList<>();
 	
 	try{
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection conn = DriverManager.getConnection(host, user, pass);
-		Statement stmt = conn.createStatement();
+		//Class.forName("com.mysql.cj.jdbc.Driver");
+		//Connection conn = DriverManager.getConnection(host, user, pass);
 		
+		//JNDI 서비스 객체 생성
+		Context initCtx = new InitialContext();
+		Context ctx = (Context)initCtx.lookup("java:comp/env"); //JNDI 기본환경 이름
+		
+		//커넥션 풀에 있는 커넥션을 가져오기
+		DataSource ds = (DataSource) ctx.lookup("jdbc/studydb");
+		Connection conn = ds.getConnection();
+		
+		
+		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery("SELECT * FROM `user1`");
 		
 		while(rs.next()) {
