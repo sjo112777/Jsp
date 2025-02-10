@@ -1,3 +1,4 @@
+<%@page import="org.apache.commons.fileupload2.core.DiskFileItem"%>
 <%@page import="java.nio.charset.Charset"%>
 <%@page import="java.util.UUID"%>
 <%@page import="java.nio.file.Path"%>
@@ -31,21 +32,21 @@
 	}
 	
 	// 파일 업로드 처리 객체 생성
-	FileItemFactory factory = DiskFileItemFactory.builder().get();
-	JakartaServletFileUpload upload = new JakartaServletFileUpload(factory);
+	DiskFileItemFactory factory = DiskFileItemFactory.builder().get();
+	JakartaServletFileUpload<DiskFileItem, DiskFileItemFactory> upload = new JakartaServletFileUpload<>(factory);
 	//최대 업로드 파일 크기 설정
 	upload.setSizeMax(1024 * 1024 * 10); // 10MB
 	
 	// 파일 업로드 스트림 작업
 	try{
-		List<FileItem> items = upload.parseRequest(request);
+		List<DiskFileItem> items = upload.parseRequest(request);
 		
-		Iterator<FileItem> iter = items.iterator();
+		Iterator<DiskFileItem> iter = items.iterator();
 		
 		// 폼 입력 필드 갯수만큼 반복
 		while(iter.hasNext()){
 			
-			FileItem item = iter.next();
+			DiskFileItem item = iter.next();
 			
 			if(item.isFormField()) {
 				//일반 텍스트 데이터
@@ -68,8 +69,6 @@
 				
 				//파일 저장
 				item.write(Path.of(uploadPath, savedFileName));
-				
-				
 				
 			}
 			
