@@ -10,12 +10,12 @@
 <%
 	// 데이터 수신
 	String sender = request.getParameter("sender");
-	String receiver= request.getParameter("receiver");
+	String receiver = request.getParameter("receiver");
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
 	
 	// Gmail 앱 비밀번호
-	String appPassword = "ixrp ntly zgft xkiv";
+	String appPassword = "구글 앱 비밀번호";
 	
 	// Gmail SMTP 서버 설정
 	Properties prop = new Properties();
@@ -25,16 +25,15 @@
 	prop.put("mail.smtp.ssl.enable", "true");
 	prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 	
-	// Gmail SMTP 세선 생성
+	// Gmail SMTP 세션 생성
 	Session gmailSession = Session.getInstance(prop, new Authenticator(){
 		
 		protected javax.mail.PasswordAuthentication getPasswordAuthentication(){
 			return new PasswordAuthentication(sender, appPassword);
 		}
-		
 	});
 	
-	//메일 발송
+	// 메일 발송
 	Message message = new MimeMessage(gmailSession);
 	
 	try {
@@ -48,6 +47,8 @@
 	}catch(Exception e){
 		e.printStackTrace();
 	}
-	//폼이름
+	
+	// 폼 이동
 	response.sendRedirect("../3.EmailTest.jsp");
+
 %>
