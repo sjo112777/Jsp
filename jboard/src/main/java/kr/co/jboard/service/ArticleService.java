@@ -7,7 +7,7 @@ import kr.co.jboard.dto.ArticleDTO;
 
 public enum ArticleService {
 	
-	INSTANCE;	
+	INSTANCE;
 	private ArticleDAO dao = ArticleDAO.getInstance();
 	
 	public void registeArticle(ArticleDTO dto) {

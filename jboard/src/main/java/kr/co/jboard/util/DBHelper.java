@@ -12,19 +12,17 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class DBHelper {
-
+	
 	protected Connection conn = null;
 	protected Statement stmt = null;
 	protected PreparedStatement psmt = null;
 	protected ResultSet rs = null;
 	
 	protected Connection getConnection() throws NamingException, SQLException {
-		
 		Context initCtx = new InitialContext();
 		Context ctx = (Context) initCtx.lookup("java:comp/env");
 		DataSource ds = (DataSource) ctx.lookup("jdbc/board");
-		
-		return ds.getConnection();		
+		return ds.getConnection();
 	}
 	
 	protected void closeAll() throws SQLException {

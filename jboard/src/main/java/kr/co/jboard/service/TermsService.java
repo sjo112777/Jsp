@@ -7,7 +7,7 @@ import kr.co.jboard.dto.TermsDTO;
 
 public enum TermsService {
 	
-	INSTANCE;	
+	INSTANCE;
 	private TermsDAO dao = TermsDAO.getInstance();
 	
 	public void registeArticle(TermsDTO dto) {

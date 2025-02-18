@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./_header.jsp" %>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/jboard/js/daumPostcode.js"></script>
 <main id="user">
     <section class="register">
-
-        <form action="#">
+        <form action="/jboard/user/register.do" method="post">
             <h2 class="tit">사이트 이용정보 입력</h2>
             <table border="1">                        
                 <tr>
@@ -59,19 +60,17 @@
                 <tr>
                     <td>주소</td>
                     <td>
-                        <input type="text" name="zip" placeholder="우편번호"/>
-                        <button type="button"><img src="../images/chk_post.gif" alt="우편번호찾기"/></button>
-                        <input type="text" name="addr1" placeholder="주소 검색"/>
-                        <input type="text" name="addr2" placeholder="상세주소 입력"/>
+                        <input type="text" name="zip" id="zip" readonly placeholder="우편번호"/>
+                        <button type="button" onclick="daumPostcode()"><img src="../images/chk_post.gif" alt="우편번호찾기"/></button>
+                        <input type="text" name="addr1" id="addr1" readonly placeholder="주소 검색"/>
+                        <input type="text" name="addr2" id="addr2" placeholder="상세주소 입력"/>
                     </td>
                 </tr>
             </table>
-
             <div>
-                <a href="./login.html" class="btn btnCancel">취소</a>
+                <a href="/jboard/user/login.do" class="btn btnCancel">취소</a>
                 <input type="submit" value="회원가입" class="btn btnRegister"/>
             </div>
-
         </form>
 
     </section>
