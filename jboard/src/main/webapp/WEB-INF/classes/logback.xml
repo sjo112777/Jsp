@@ -1,5 +1,4 @@
 <configuration>
-
   <!-- 콘솔 어펜더 -->
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <!-- encoders are assigned the type
@@ -22,6 +21,6 @@
   </appender>
 
   <root level="debug">
-    <appender-ref ref="FILE" />
+    <appender-ref ref="STDOUT" />
   </root>
 </configuration>
