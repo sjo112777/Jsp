@@ -38,6 +38,21 @@ public class SQL {
 													+ "ORDER BY `no` desc "
 													+ "LIMIT ?, 10";
 	
+	public final static String SELECT_ALL_ARTICLE_BY_SEARCH = "SELECT "
+																+ "a.*, "
+																+ "u.`nick` "
+																+ "FROM `article` AS a "
+																+ "JOIN `user` AS u ON a.writer = u.uid ";
+	
+	public final static String SELECT_COUNT_ARTICLE_FOR_SEARCH = "select count(*) from `article` as a ";
+	public final static String JOIN_FOR_SEARCH_NICK  = "JOIN `user` as u ON a.writer = u.uid ";
+	public final static String WHERE_FOR_SEARCH_TITLE   = "WHERE `title` LIKE ? ";
+	public final static String WHERE_FOR_SEARCH_CONTENT = "WHERE `content` LIKE ? ";
+	public final static String WHERE_FOR_SEARCH_WRITER  = "WHERE `nick` LIKE ? ";	
+	public final static String ORDER_FOR_SEARCH  = "ORDER BY `no` DESC ";
+	public final static String LIMIT_FOR_SEARCH  = "LIMIT ?, 10";
+															
+	
 	public static final String INSERT_ARTICLE = "insert into `article` set "
 													+ "`title`=?,"
 													+ "`content`=?,"
