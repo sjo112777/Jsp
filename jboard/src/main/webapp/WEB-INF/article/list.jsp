@@ -5,7 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <title>글목록</title>
-    <link rel="stylesheet" href="/jboard/css/style.css"/>   
+    <link rel="stylesheet" href="/jboard/css/style.css"/>
+    <!-- 
+    	샘플 데이터 채우기
+    	INSERT INTO `article` (`title`, `content`, `writer`, `regip`, `wdate`) 
+		SELECT `title`, `content`, `writer`, `regip`, `wdate` FROM `article`;
+    -->
 </head>
 <body>
     <div id="wrapper">
@@ -36,7 +41,7 @@
                     <c:forEach var="article" items="${requestScope.articles}">
 	                    <tr>
 	                        <td>${pageStartNum}</td>
-	                        <td><a href="/jboard/article/view.do">${article.title}[${article.comment}]</a></td>
+	                        <td><a href="/jboard/article/view.do?no=${article.no}">${article.title}[${article.comment}]</a></td>
 	                        <td>${article.nick}</td>
 	                        <td>${article.wdate}</td>
 	                        <td>${article.hit}</td>
