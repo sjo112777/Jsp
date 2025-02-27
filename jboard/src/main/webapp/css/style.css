@@ -575,10 +575,17 @@ footer > p > .version {
 }
 
 #article > .view > .commentList {}
-#article > .view > .commentList > article {overflow: hidden;}        
+#article > .view > .commentList > article {
+	overflow: hidden;
+    border-bottom: 1px dotted black;
+    padding: 10px;
+    box-sizing: border-box;
+}        
 #article > .view > .commentList .nick {}
 #article > .view > .commentList .date {}
-#article > .view > .commentList .content {padding: 10px;}
+#article > .view > .commentList .content {
+	padding: 10px 0;
+}
 #article > .view > .commentList > article > div {float: right;}
 #article > .view > .commentList > article .remove {}
 #article > .view > .commentList > article .modify {}
